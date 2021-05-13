@@ -1,0 +1,111 @@
+/*  */
+#sec-breakpoints div {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+#sec-breakpoints div div{
+    background-color: var(--color-element);
+    border-radius: 100%;
+
+    width: 15vw;
+    height: 15vw;
+
+    margin: 2%;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2em;
+    text-align: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+
+    align-items: center;
+}
+#sec-breakpoints p {
+    text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+    #sec-breakpoints header {
+        background-color: var(--color-red);
+    }
+    #sec-breakpoints > div div:nth-of-type(1)  {
+        background-color: var(--color-red);
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 800px) {
+    #sec-breakpoints header {
+        background-color: var(--color-orange);
+    }
+    #sec-breakpoints > div {
+        font-size: 0.8em;
+    }
+    #sec-breakpoints > div div:nth-of-type(2)  {
+        background-color: var(--color-orange);
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 480px) {
+    #sec-breakpoints header{
+        background-color: var(--color-green);
+    }
+    #sec-breakpoints > div {
+        font-size: 0.6em;
+    }
+    #sec-breakpoints > div div:nth-of-type(3)  {
+        background-color: var(--color-green);
+    }
+}
+
+@media screen and (max-width: 480px) and (min-width: 370px) {
+    #sec-breakpoints header {
+        background-color: var(--color-turquoise);
+    }
+    #sec-breakpoints > div {
+        font-size: 0.4em;
+    }
+    #sec-breakpoints > div div:nth-of-type(4) {
+        background-color: var(--color-turquoise);
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #sec-breakpoints header {
+        background-color: var(--color-blue);
+        min-width: 35%;
+        writing-mode: vertical-lr;
+        text-orientation:upright;
+    }
+    #sec-breakpoints header p {
+        background-color: var(--color-blue);
+        writing-mode: horizontal-tb;
+        max-width: 80%;
+    }
+    #sec-breakpoints {
+        display: flex;
+        flex-flow: row;
+    }
+    #sec-breakpoints > div {
+        font-size: 0.4em;
+
+        display: flex;
+        flex-flow: row wrap;
+        align-content: center;
+        justify-content: space-between;
+
+        padding: 3%;
+    }
+    #sec-breakpoints > div div {
+        width: 20vw;
+        height: 20vw; 
+        min-width: 52px;
+        min-height: 52px;
+    } 
+    #sec-breakpoints > div div:nth-of-type(5) {
+        background-color: var(--color-blue);
+    }
+} 

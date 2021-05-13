@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');</style> 
+    <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');</style> 
+
+    <link rel="stylesheet" href="style/general.css">
+    <link rel="stylesheet" href="style/breakpoints.css">
+    <link rel="stylesheet" href="style/resp_header.css">
+    <link rel="stylesheet" href="style/resp_header_2.css">
+
+    <title>Tests Responsive</title>
+</head>
+
+<body>
+    <header>
+        <a href="./index.html">HOME</a>
+        <h1>Divers tests pour responsive</h1>
+    </header>
+
+    <!-- BREAKPOINTS -->
+    <section id="sec-breakpoints">
+        <header>
+            <h2>Breakpoints</h2>
+            <p>Lorsque les breakpoints sont atteinds, la couleur, la taille de police, et pour le dernier, la disposition des éléments, s'adapte</p>
+        </header>
+
+        <div>
+            <div>@media screen and (min-width: 1024px)</div>
+            <div>@media screen and (max-width: 1024px) and (min-width: 800px)</div>
+            <div>@media screen and (max-width: 800px) and (min-width: 480px)</div>
+            <div>@media screen and (max-width: 480px) and (min-width: 370px)</div>
+            <div>@media screen and (max-width: 370px)</div>
+        </div>
+    </section>
+
+    <section id="sec-resp-header">
+        <header>
+            <h2>Responsive Header (grid)</h2>
+        </header>
+
+        <div>
+            <div id="div-img">img</div>
+            <div id="div-title">title</div>
+            <div id="div-content">content</div>
+            <div id="div-info">info</div>
+        </div>
+    </section>
+
+    <section id="sec-resp-header-2">
+        <header>
+            <h2>Responsive Header 2 (grid)</h2>
+        </header>
+
+        <div>
+            <div id="div-img">
+                <img src="style/img/myAmpoule-90x157.png" width="90px" height="157px">
+            </div>
+
+            <div id="div-title">THIS IS A TITLE</div>
+
+            <div id="div-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis voluptates qui ex</div>
+
+            <div id="div-info">
+                <div>Lorem ipsum dolor sit amet </div>
+                <div class="round">ROUND</div>
+            </div>
+
+        </div>
+    </section>
+</body>
+
+</html>

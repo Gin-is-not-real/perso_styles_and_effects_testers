@@ -1,0 +1,101 @@
+#sec-resp-header-2 > div {
+    width: 100%;
+    height: 40vh;
+
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 20% 58% 20%;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas: 
+        "img title info"
+        "img contnt info"
+        "img contnt info"
+    ;
+    gap: 1%;
+    box-sizing: border-box;
+    padding: 1%;
+}
+#sec-resp-header-2 #div-img {
+    background-color: var(--color-turquoise);
+    grid-area: img;
+}
+#sec-resp-header-2 #div-title {
+    background-color: var(--color-blue);
+    grid-area: title;
+}
+#sec-resp-header-2 #div-content {
+    background-color: var(--color-blue);
+    grid-area: contnt;
+}
+#sec-resp-header-2 #div-info {
+    background-color: var(--color-turquoise);
+    grid-area: info;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.round {
+    border: 1px solid black;
+    background-color: var(--color-orange);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+
+    margin: 1%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 480px) {
+    #sec-resp-header-2 > div {
+        font-size: 0.8em;
+
+        display: grid;
+        width: 100%;
+        height: 100%;
+        /*
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr 3fr;
+        grid-template-areas: 
+            "img title title title"
+            "img contnt contnt contnt"
+            "info contnt contnt contnt"
+        ;
+        */
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr 1fr 2fr;
+        grid-template-areas: 
+            "img title title title"
+            "img info info info"
+            "img contnt contnt contnt"
+        ;
+    }
+    #sec-resp-header-2 #div-info {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .round {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7em;
+    }
+}
+@media screen and (max-width: 360px) {
+    #sec-resp-header-2 > div {
+        font-size: 0.6em;
+    }
+    #sec-resp-header-2 #div-info {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .round {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7em;
+    }
+}
+

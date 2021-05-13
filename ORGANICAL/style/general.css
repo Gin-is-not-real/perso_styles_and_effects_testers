@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'bradhitc';
+    src: url('fonts/bradhitc/bradhitc.eot');
+    src: local('☺'), url('fonts/bradhitc/bradhitc.woff') format('woff'), url('fonts/bradhitc/bradhitc.ttf') format('truetype'), url('fonts/bradhitc/bradhitc.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+html {
+    font-family: "bradhitc";
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 200vh;
+}
+body {
+    margin: 0;
+}
+body * {
+    /* border: 1px solid black; */
+    margin: 0;
+}
+h1 {
+    font-family: "bradhitc";
+      /* html px * em  = elt px*/
+    font-size: 1.8em; 
+    /* font-size: 28.8px; */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}

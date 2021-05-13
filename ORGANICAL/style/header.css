@@ -1,0 +1,50 @@
+#sec-headbands {
+    height: 25vh;
+    opacity: 0;
+    /* position: fixed; */
+    position: sticky;
+    top: 0;
+    
+    z-index: 1;
+}
+#sec-headbands header {
+    background-color: #B9CC75;
+    display: flex;
+    flex-direction: row;
+}
+#sec-headbands header h1 {
+    background-color: transparent;
+}
+
+nav {
+    width: 80%;
+    margin-top: 1%;
+}
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    height: 100%;
+}
+
+nav ul li:hover {
+    font-size: large;
+    text-shadow: 1px 1px 1px white;
+}
+
+#div-headband {
+    max-height: 100px;
+}
+
+
+
+
+
