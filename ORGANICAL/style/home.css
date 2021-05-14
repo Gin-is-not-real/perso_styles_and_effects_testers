@@ -1,0 +1,6 @@
+#sec-home * {
+    border: 1px solid black;
+}
+#sec-home div:nth-child(1) {
+    width: 50vw;
+}

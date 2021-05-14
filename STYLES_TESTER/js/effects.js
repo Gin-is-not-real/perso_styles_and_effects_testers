@@ -30,28 +30,33 @@ gradElements.forEach(elt => {
 let gradCounter = 1;
 let incrementBool = true;
 
-window.setInterval(function() {
-    if(gradCounter == 100 || gradCounter == 0) {
-        console.log(gradCounter + " inc " + incrementBool);
+function upAndDownCounter(counter) {
+    if(counter == 100 || counter == 0) {
         incrementBool = !incrementBool;
     }
     if(incrementBool) {
-        gradCounter ++;
+        counter ++;
     }
     else {
-        gradCounter --;
+        counter --;
     }
+    return counter;
+}
+
+window.setInterval(function() {
+    gradCounter = upAndDownCounter(gradCounter);
+    // console.log(gradCounter);
 
     gradElements.forEach(elt => {
-        linearGradientAnim(elt);
+         linearGradientAnim(elt);
     })
 
-    console.log(gradCounter);
-    divGradient2.style.opacity = gradCounter/100;
-    // applyGradient(divGradient2, "var(--color-blue)", "var(--color-turquoise)", gradCounter);
-
+    // console.log(gradCounter);
+    // divGradient2.style.opacity = gradCounter/100;
+    applyGradient(divGradient2, "var(--color-orange)", "var(--color-turquoise)", gradCounter);
 
 }, 200);
+
 
 /*
     gradient
@@ -67,12 +72,12 @@ function applyGradient(elt, color1, color2, value) {
 /*
     APPEARS
 */
-const bounding = document.querySelector(".bounding");
-bounding.style.backgroundColor = "var(--color-orange)";
+const appearDiv = document.querySelector(".div-appear");
+appearDiv.style.backgroundColor = "var(--color-orange)";
 
-const rndAppears = document.querySelectorAll(".appear");
+const appearsElts = document.querySelectorAll(".appear");
 /*
-    change opacity of an element in fonction of these top position relative to scrollable container
+    myScrollEvent run events on .scrollable scroll
 */
 let last_offset = 0;
 let ticking = false;
@@ -81,10 +86,8 @@ function myScrollEvent() {
     last_offset = scrollable.scrollY;
     if (!ticking) {
         window.requestAnimationFrame(function() {
-            appear(bounding, scrollable);
-
-            rndAppears.forEach(elt => {
-                appear(elt, scrollable);
+            appearsElts.forEach(elt => {
+                makeElementAppears(elt, scrollable);
             })
 
             ticking = false;
@@ -96,30 +99,96 @@ function myScrollEvent() {
 /*
     change opacity of an element in fonction of these top position relative to scrollable container
 */
-function appear(elt, container) {
-    let containerBottom = container.getBoundingClientRect().bottom;
-    let containerTop = container.getBoundingClientRect().top;
-
-    let top = elt.getBoundingClientRect().top;
-    let bottom = elt.getBoundingClientRect().bottom;
-
-    // console.log("containerTop: ", containerTop);
-    // console.log("containerBottom: ", containerBottom);
-    // console.log("top: ", top);
-    // console.log("bottom: ", bottom);
-
-    if(top < containerBottom) {
-        //l'elt apparait
-        let relative = containerBottom - top;
-        let opacityValue = (relative/100);
-        // console.log("relative: ", relative, ", opacityValue: ", opacityValue);
-
-        elt.style.opacity = opacityValue.toFixed(2);
-        elt.style.transition = "all 2s ease";
+function makeElementAppears(elt, container) {
+    let isVisible = getPixelsAboveBottomLimit(elt, container);
+    if(isVisible) {
+        let visiblePercents = (isVisible / getEltHeight(elt)) * 100;
+        changeOpacity(elt, visiblePercents/100);
     }
-    
 }
 
+function changeOpacity(elt, value) {
+    elt.style.opacity = value.toFixed(2);
+    elt.style.transition = "all 2s ease";        
+}
+
+function getPixelsAboveBottomLimit(elt, container) {
+    let pixels = container.getBoundingClientRect().bottom - elt.getBoundingClientRect().top;
+    if(pixels > 0) {
+        return pixels;
+    }
+    else {
+        return false;
+    }
+}
+
+function getEltHeight(elt) {
+    return elt.getBoundingClientRect().bottom - elt.getBoundingClientRect().top;
+}
+
+/*
+    make element surge to left
+*/
+let surgeLeft = document.querySelector(".surge-left");
+surgeLeft.addEventListener("click", function() {
+    surge(surgeLeft);
+    retract(surgeLeft);
+});
+
+function surge(elt) {
+    let style = window.getComputedStyle(elt);
+    elt.style.paddingRight = "100px";
+    elt.style.transition = "all 0.5s ease";
+}
+function retract(elt) {
+    elt.style.paddingRight = "0px";
+
+    window.setTimeout(function() {
+        elt.style.paddingRight = "30px";
+    }, 300);
+
+    window.setTimeout(function() {
+        elt.style.paddingRight = "0px";
+    }, 500);
+
+    window.setTimeout(function() {
+        elt.style.paddingRight = "10px";
+    }, 700);
+
+    window.setTimeout(function() {
+        elt.style.paddingRight = "0px";
+    }, 1000);
+}
+// surge(surgeLeft);
 
 
+/*
+    moving a background
+*/
+let fig = document.querySelectorAll(".fig-window");
+let fig0 = fig[0];
+let img1 = document.querySelector("#img-moving-1");
+img1.addEventListener("transitionend", updateTransition, true);
+console.log(img1);
 
+function updateTransition() {
+    console.log(this, this.style.marginLeft);
+    if(this.style.marginLeft == "100%") {
+        marginElt(this, "0%", 0);
+    }
+    else {
+         marginElt(elt, "100%", 3);
+    }
+}
+function moveBackgroundImage(elt) {
+    elt.style.marginLeft = "0%";
+    let style = window.getComputedStyle(elt);
+    console.log(elt.style.marginLeft);
+
+    marginElt(elt, "100%", 3);
+}
+function marginElt(elt, value, time) {
+    elt.style.marginLeft = value;
+    elt.style.transition = "all " + time + "s ease";
+}
+// moveBackgroundImage(img1);

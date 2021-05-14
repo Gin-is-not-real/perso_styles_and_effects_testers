@@ -65,8 +65,16 @@ section * {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
-.bounding2 div{
+.bounding2 div {
+    margin: 5%;
+    grid-row: 1;
+}
+.bounding2 div:nth-of-type(4){
+    grid-row: 2;
 }
 
 .totop {
@@ -74,4 +82,7 @@ section * {
     height: 62px !important;
 }
 
-
+.surge-left {
+    margin: 0;
+    transition: step-end;
+}
