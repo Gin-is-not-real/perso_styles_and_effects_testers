@@ -1,0 +1,25 @@
+/* shaded-box-2 */
+.pk-shaded {
+    padding: 1%;
+    border-radius: 7%;
+    box-shadow: 9px 10px 10px rgba(60, 74, 130, 0.24);
+    background: #3c2bb357;
+}
+.pk-shaded > header {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5% auto;
+}
+.pk-shaded p {
+    margin: 5% auto;
+}
+.pk-shaded figure {
+    width: 96%;
+    height: auto;
+    margin: 0 auto;
+}
+.pk-shaded img {
+    width: 100%;
+    margin: 0 auto;
+}
+
