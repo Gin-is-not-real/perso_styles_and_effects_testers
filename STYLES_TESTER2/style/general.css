@@ -6,6 +6,7 @@ html * {
     margin: 0;
 
     font-family: 'Krona One', sans-serif;
+    color: rgba(0, 0, 0, 0.796);
 }
 
 article > header {
@@ -13,4 +14,18 @@ article > header {
 }
 section {
     margin: 2%;
+}
+
+li {
+    list-style: none;
+}
+
+.hidde-nav {
+    width: 50px;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+
 }

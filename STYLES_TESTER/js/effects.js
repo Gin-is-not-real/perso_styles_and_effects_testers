@@ -84,6 +84,7 @@ let ticking = false;
 
 function myScrollEvent() {
     last_offset = scrollable.scrollY;
+    
     if (!ticking) {
         window.requestAnimationFrame(function() {
             appearsElts.forEach(elt => {
@@ -121,7 +122,6 @@ function getPixelsAboveBottomLimit(elt, container) {
         return false;
     }
 }
-
 function getEltHeight(elt) {
     return elt.getBoundingClientRect().bottom - elt.getBoundingClientRect().top;
 }

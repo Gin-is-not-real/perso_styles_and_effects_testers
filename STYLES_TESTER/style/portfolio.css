@@ -1,0 +1,67 @@
+#sec-portfolio * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.portfolio-main-content {
+    display: flex;
+    justify-content: space-between;
+}
+.projet-section {
+    width: 30vw;
+    border: 1px solid white;
+}
+.projet-header {
+    background-color: transparent;
+}
+.projet-header h3 {
+    text-align: center;
+}
+.projet-main-content {
+    display: flex;
+    flex-direction: column;
+}
+.projet-main-content li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.projet-main-content ul {
+    border: 1px solid white;
+    border-radius: 100%;
+}
+.projet-picture {
+    display: grid;
+}
+
+.projet-main-content figure {
+    /* position: absolute; */
+    width: 22vw;
+    height: 22vw;
+    overflow: hidden;
+    border-radius: 100%;
+    justify-self: center;
+}
+.projet-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.icon {
+    border: 1px solid white;
+    width: 32px;
+    height: 32px;
+}
+.icon-fig {
+    border: 1px solid white;
+    border-radius: 100%;
+    width: 32px !important;
+    height: 32px !important;
+
+}
+
+#develop {
+    border: 1px solid white;
+    /* position: absolute; */
+    background-color: black;
+}

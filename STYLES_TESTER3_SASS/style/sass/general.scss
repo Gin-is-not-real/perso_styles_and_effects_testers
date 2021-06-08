@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+html * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Krona One', sans-serif;
+    color: rgba(0, 0, 0, 0.796);
+}
+
+article > header {
+    margin: 5%;
+}
+section {
+    margin: 2%;
+}
+
+li {
+    list-style: none;
+}
+details li {
+    margin-left: 5%;
+}
+.hidden {
+    visibility: hidden;
+    display: none;
+}

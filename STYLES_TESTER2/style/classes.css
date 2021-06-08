@@ -1,3 +1,45 @@
+/* navbar-scale */
+.navbar-details > header {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5% auto;
+}
+.navbar-details details {
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.131);
+    border-radius: 3%;
+}
+.navbar-details summary {
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.131);
+    border-radius: 3%;
+}
+.navbar-details nav {
+    background-color: rgba(0, 0, 0, 0.207);
+    border-radius: 3%;
+}
+
+/* navbar-scale */
+.navbar-scale {
+    width: max-content;
+}
+.navbar-scale > header {
+    text-transform: uppercase;
+    margin: 5% auto;
+}
+.navbar-scale li {
+    padding: 5%;
+    margin: 8% auto;
+    opacity: 0.8;
+}
+
+/* .shaded-box  */
+.shaded-box {
+    border-radius: 1%;
+    box-shadow: 9px 3px 10px rgba(70, 70, 70, 0.309);
+    background: hsla(217, 20%, 36%, 0.267);
+}
+
 /* shaded-box-2 */
 .pk-shaded {
     padding: 1%;
@@ -21,5 +63,44 @@
 .pk-shaded img {
     width: 100%;
     margin: 0 auto;
+}
+
+/* grey-card */
+.grey-card {
+    text-transform: uppercase;
+}
+.grey-card > header {
+    text-transform: uppercase;
+    margin: 5% auto;
+    margin-left: 2%;
+}
+.grey-card > header h3::first-letter {
+    color: crimson;
+    background-color: rgba(74, 114, 29, 0.227);
+    font-size: 200%;
+}
+.grey-card p {
+    margin: 5% auto;
+}
+.grey-card figure {
+    width: 96%;
+    height: auto;
+    margin: 0 auto;
+}
+.grey-card img {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* blank */
+.blank {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.083) 2%, transparent);
+    box-shadow: 9px 10px 10px rgba(60, 74, 130, 0.24);
+    border-radius: 2%;
+}
+.blank > header {
+    text-transform: uppercase;
+    margin: 5% auto;
+    margin-left: 2%;
 }
 

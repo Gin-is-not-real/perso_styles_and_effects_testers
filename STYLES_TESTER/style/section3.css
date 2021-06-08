@@ -26,7 +26,6 @@
     overflow: hidden;
 }
 
-
 #img-moving-1 {
     display: inline-block;
     /* padding-right: 2em; */
@@ -42,6 +41,7 @@
     }
     65% {
         transform: translate3d(-55%, 0, 10%);
+        filter: blur(1.5px);
     }
     100% {
         transform: translate3d(-10%, 0, 0);

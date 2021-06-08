@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+html * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Krona One", sans-serif;
+  color: rgba(0, 0, 0, 0.796);
+}
+
+article > header {
+  margin: 5%;
+}
+
+section {
+  margin: 2%;
+}
+
+li {
+  list-style: none;
+}
+
+details li {
+  margin-left: 5%;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
+/* cards */
+#cards-main {
+  padding: 2%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  width: 320px;
+  height: 450px;
+}
+
+.white-card > header h3::first-letter {
+  color: crimson;
+  background-color: rgba(74, 114, 29, 0.227);
+  font-size: 200%;
+}
+
+.white-card {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.083) 2%, transparent);
+  box-shadow: 9px 10px 10px rgba(60, 74, 130, 0.24);
+  border-radius: 2%;
+}
+
+.masked-card header, .white-card:hover header {
+  position: relative;
+  top: 30%;
+  text-align: center;
+}
+.masked-card img, .white-card:hover img {
+  opacity: 0.5;
+}
+
+/* blank */
+.white-card > header {
+  text-transform: uppercase;
+  margin: 5% auto;
+  margin-left: 2%;
+}
+.masked-card:hover h3 {
+  transform: translate(0%, -300%);
+  transition: all 0.5s ease-in-out;
+}
+.masked-card:hover li:nth-of-type(1) {
+  transform: translate(0%, -600%);
+  transition: all 0.5s 0.5s ease-in-out;
+}
+.masked-card:hover li:nth-of-type(2) {
+  transform: translate(0%, -600%);
+  transition: all 0.5s 1s ease-in-out;
+}
+.masked-card:hover li:nth-of-type(3) {
+  transform: translate(0%, -600%);
+  transition: all 0.5s 1.5s ease-in-out;
+}
+
+/*# sourceMappingURL=style.css.map */
