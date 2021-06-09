@@ -11,7 +11,11 @@
     <div id="date-picker">
         <!-- il faudras specifier un mois/numero de mois -->
 
-        <header><input type="button" value="<"><h3>MOIS</h3><input type="button" value=">"></header>
+        <header>
+            <input type="button" value="<" onclick="downMonth()">
+            <h3>MOIS</h3>
+            <input type="button" value=">"  onclick="upMonth()">
+        </header>
         <div id ="calendar">
             <input type="button" class="calendar-case" id="day-1" value="1">
             <input type="button" class="calendar-case" id="day-2" value="2">
