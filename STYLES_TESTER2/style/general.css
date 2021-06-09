@@ -8,9 +8,14 @@ html * {
     font-family: 'Krona One', sans-serif;
     color: rgba(0, 0, 0, 0.796);
 }
-
+article {
+    border-top: 1px solid rgba(0, 0, 0, 0.035);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.035) 2%, transparent);
+    box-shadow: 9px 10px 10px rgba(60, 74, 130, 0.24);
+}
 article > header {
     margin: 2%;
+
 }
 section {
     margin: 2%;
