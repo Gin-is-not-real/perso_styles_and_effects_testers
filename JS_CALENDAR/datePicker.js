@@ -3,6 +3,7 @@ let reservations = [
     {arr: new Date('2021-01-02'), dep: new Date('2021-01-10')},
     {arr: new Date('2021-01-15'), dep: new Date('2021-01-18')},
 ];
+
 let calendar = document.querySelector('#calendar');
 //on recuperer le mois en cours par la saisie user
 let monthNum = 0;
@@ -27,6 +28,7 @@ function upMonth() {
         }
     });
 }
+
 function downMonth() {
     monthNum--;
     restartElements();
@@ -51,7 +53,6 @@ function generateCalendar(month) {
     }
 } 
 */
-
 // //on fait un tableau avec les intervals occupés du mois (un tableau au cas ou on aurait plusieures plages prises le même mois)
 // let nonAvailables = [];
 
@@ -71,7 +72,6 @@ function findIntervalInDays(arr, dep, monthNum) {
         firstDay = arr.getDate();
         lastDay = dep.getMonth() === monthNum ? dep.getDate() : 31;
         // console.log("firstDay", firstDay, "lastDay", lastDay);
-
         return {firstDay, lastDay};
     }
 }
@@ -87,7 +87,6 @@ function restartElements() {
 
 function affectElements(interval) {
     console.log('will affect ' , interval);
-
     //boucle for: on part du premier jour, on s'arrete au dernier, et z chaque tour on agit sur le DOM
     for(let i = interval.firstDay; i <= interval.lastDay; i++) {
         let day = document.querySelector('[id*="' + i + '"]');
