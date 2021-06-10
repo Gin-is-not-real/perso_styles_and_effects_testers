@@ -12,9 +12,9 @@
         <!-- il faudras specifier un mois/numero de mois -->
 
         <header>
-            <input type="button" value="<" onclick="downMonth()">
+            <input type="button" value="<" onclick="setMonthNum(monthNum-1)">
             <h3>MOIS</h3>
-            <input type="button" value=">"  onclick="upMonth()">
+            <input type="button" value=">"  onclick="setMonthNum(monthNum+1)">
         </header>
         <div id ="calendar">
             <input type="button" class="calendar-case" id="day-1" value="1">
@@ -52,8 +52,10 @@
     </div>
 
     <div>
-        <input type="date">
+        <input id="calendar-arrivee" type="date" disabled=true>
+        <input id="calendar-depart" type="date" disabled=true>
     </div>
+
 </body>
     <script src='datePicker.js' type="text/javascript"></script>
 

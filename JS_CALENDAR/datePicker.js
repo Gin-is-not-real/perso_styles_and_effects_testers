@@ -1,88 +1,67 @@
-//on va recuperer les resa de la bdd: arr-dep 
+let titleMonth = document.querySelector('#date-picker h3');
+let calendar = document.querySelector('#calendar');
+let calendarArrivee = document.querySelector('#calendar-arrivee');
+let calendarDepart = document.querySelector('#calendar-depart');
+
+let dayElement = document.querySelectorAll('.calendar-case');
+dayElement.forEach(elt => {
+    elt.addEventListener('click', function() {
+        console.log(this.value, calendarArrivee.value);
+        let value = calendarArrivee.value
+        // document.querySelector('#calendar-arrivee').value = '2021-' + monthFormatNum + "-01";
+    })
+})
+//on va recuperer les resa de la bdd sous forme d'objet: {arr, dep}
 let reservations = [
     {arr: new Date('2021-01-02'), dep: new Date('2021-01-10')},
     {arr: new Date('2021-01-15'), dep: new Date('2021-01-18')},
 ];
 
-let calendar = document.querySelector('#calendar');
 //on recuperer le mois en cours par la saisie user
 let monthNum = 0;
-restartElements();
+setMonthNum(0);
 
-reservations.forEach(resa => {
-    let interval = findIntervalInDays(resa.arr, resa.dep, monthNum);
-    if(interval !== undefined) {
-        affectElements(interval);
-    }
-});
-
-
-function upMonth() {
-    monthNum++;
-    restartElements();
-
-    reservations.forEach(resa => {
-        let interval = findIntervalInDays(resa.arr, resa.dep, monthNum);
-        if(interval !== undefined) {
-            affectElements(interval);
-        }
-    });
-}
-
-function downMonth() {
-    monthNum--;
-    restartElements();
-
-    reservations.forEach(resa => {
-        let interval = findIntervalInDays(resa.arr, resa.dep, monthNum);
-        if(interval !== undefined) {
-            affectElements(interval);
-        }
-    });
-}
-/*
-//generer le calendrier? 
-function generateCalendar(month) {
-    for(let i = 0; i <= 31; i ++) {
-        let btn = document.createElement('input');
-        btn.type = "button";
-        btn.className = "calendar-case";
-        btn.id = "day-" + i;
-        btn.value = i;
-        calendar.appendChild(btn);
-    }
-} 
-*/
-// //on fait un tableau avec les intervals occupés du mois (un tableau au cas ou on aurait plusieures plages prises le même mois)
-// let nonAvailables = [];
-
-// reservations.forEach(resa => {
-//     let interval = findIntervalInDays(resa.arr, resa.dep);
-//     affectElements(interval);
-//     // console.log(interval);
-//     //on formate les cases correspondantes
-// });
-
-
-function findIntervalInDays(arr, dep, monthNum) {
-    let firstDay, lastDay;
-    // console.log(arr.getMonth(), dep.getMonth());
-
-    if(arr.getMonth() === monthNum) {
-        firstDay = arr.getDate();
-        lastDay = dep.getMonth() === monthNum ? dep.getDate() : 31;
-        // console.log("firstDay", firstDay, "lastDay", lastDay);
-        return {firstDay, lastDay};
+//////////////////////////////////////////////////////
+//BUTTONS FUNCTIONS
+function setMonthNum(num) {
+    if(num <= 11 && num >= 0) {
+        monthNum = num;
+        restartElements();
+        reservations.forEach(resa => {
+            let interval = findIntervalInDays(resa.arr, resa.dep, monthNum);
+        });
     }
 }
+//////////////////////////////////////////////////////
+//FUNCTIONS
 
 function restartElements() {
+    //on ajuste le num du mois car celui qu'on va recuperé partira de 0, et on veux aussi un format '01' et pas '1'
+    let monthFormatNum = monthNum + 1;
+    monthFormatNum = monthFormatNum < 10 ? '0' + monthFormatNum : monthFormatNum;
+
+    //on change les valeurs affichée en html
+    titleMonth.textContent = monthFormatNum;
+    document.querySelector('#calendar-arrivee').value = '2021-' + monthFormatNum + "-01";
+
+    //on remet le style des elements a zéro et on les réactive
     let days = document.querySelectorAll('[id*=day-]');
     days.forEach(day => {
         day.style.backgroundColor = "lightgrey";
         day.style.opacity = "1";
-        day.disabled = true;
+        day.disabled = false;
     })
+}
+
+function findIntervalInDays(arr, dep, monthNum) {
+    let firstDay, lastDay;
+
+    if(arr.getMonth() === monthNum) {
+        firstDay = arr.getDate();
+        lastDay = (dep.getMonth()) === monthNum ? dep.getDate() : 31;
+
+        affectElements({firstDay, lastDay});
+    }
 }
 
 function affectElements(interval) {
