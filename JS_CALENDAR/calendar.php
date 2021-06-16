@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        for include this section, don't forget:
+            
+            - to link the js script: 
+                <script src='datePicker.js' type="text/javascript"></script>
 
-    <link rel="stylesheet" href="datePicker.css">
+            - and the stylesheet:
+                <link rel="stylesheet" href="datePicker.css">
+    -->
 
-    <title>JS CALENDAR</title>
-</head>
-<body>
-    
-    <section id="reservation-picker">
+<section id="reservation-picker">
         <div id="date-picker">
             <header>
                 <input type="button" value="<" onclick="setMonthNum(monthNum-1)">
@@ -67,8 +64,3 @@
             <button id="btn-send">envoyer</button>
         </div>
     </section>
-
-    <script src='datePicker.js' type="text/javascript"></script>
-</body>
-
-</html>
