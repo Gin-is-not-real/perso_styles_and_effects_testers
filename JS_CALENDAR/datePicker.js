@@ -3,46 +3,106 @@ let calendar = document.querySelector('#calendar');
 let calendarArrivee = document.querySelector('#calendar-arrivee');
 let calendarDepart = document.querySelector('#calendar-depart');
 
-let dayElement = document.querySelectorAll('.calendar-case');
-dayElement.forEach(elt => {
-    elt.addEventListener('click', function() {
-        console.log(this.value, calendarArrivee.value);
-        let value = calendarArrivee.value
-        // document.querySelector('#calendar-arrivee').value = '2021-' + monthFormatNum + "-01";
+//
+let btnArrivee = document.querySelector('#btn-arrivee');
+let btnDepart = document.querySelector('#btn-depart');
+let btns = [btnArrivee, btnDepart];
+
+btns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        let index = btns.indexOf(this);
+
+        btns.forEach(b => {
+            if(btns.indexOf(b) == index) {
+                b.classList.add('active');
+            }
+            else {
+                b.classList.remove('active');
+            }
+        })
+        console.log(this.className);
+
+        btns.forEach(b => {
+            // b.classList.toggle('active');
+        })
     })
 })
+btnDepart.addEventListener('click', function() {
+    calendarDepart.value = calendarArrivee.value;
+    console.log(calendarArrivee.value);
+    // calendarDepart.value;
+})
+
+//calendar cases and listener
+//on veux que les champs arrivée et depart du formulaire de depart soit remplis par un clic sur une case.
+//on recupere le jour via l'id de la case, et le mois par le num de la section au moment du clic
+let dayElement = document.querySelectorAll('.calendar-case');
+
+dayElement.forEach(elt => {
+    elt.addEventListener('click', function() {
+        let date = new Date(calendarArrivee.value);
+        date.setDate(this.id.replace('day-', ''));
+        // console.log('date', date);
+        
+        let dateStr = date.getFullYear().toString(10) + '-' + formatMonth(date.getMonth()).toString(10) + '-' + formatDay(date.getDate()).toString(10);
+        console.log(dateStr)
+
+        sendValueToActiveDateInput(dateStr);
+    })
+})
+
+function sendValueToActiveDateInput(dateStr) {
+    let active = btnArrivee.classList.contains('active') ? calendarArrivee : calendarDepart;
+    // console.log(active);
+    active.value = dateStr;
+}
+
+
 //on va recuperer les resa de la bdd sous forme d'objet: {arr, dep}
 let reservations = [
     {arr: new Date('2021-01-02'), dep: new Date('2021-01-10')},
     {arr: new Date('2021-01-15'), dep: new Date('2021-01-18')},
 ];
 
-//on recuperer le mois en cours par la saisie user
-let monthNum = 0;
-setMonthNum(0);
-
+//on recupere le num du mois en cours
+let actualMonth = new Date().getMonth();
+// console.log(actualMonth);
+let monthNum = actualMonth;
+setMonthNum(actualMonth);
 //////////////////////////////////////////////////////
 //BUTTONS FUNCTIONS
 function setMonthNum(num) {
     if(num <= 11 && num >= 0) {
         monthNum = num;
         restartElements();
+
+        //on descative les jours qui sont inclus dans les intervales réservés
         reservations.forEach(resa => {
-            let interval = findIntervalInDays(resa.arr, resa.dep, monthNum);
+            findIntervalInDays(resa.arr, resa.dep, monthNum);
         });
     }
 }
 //////////////////////////////////////////////////////
 //FUNCTIONS
+function formatMonth(number) {
+    //on ajuste le num du mois car celui qu'on va recuperer partira de 0, et on veux aussi un format '01' et pas '1'
+    let formatNum = number + 1;
+    formatNum = formatNum < 10 ? '0' + formatNum : formatNum;
+    return formatNum;
+}
+function formatDay(number) {
+    //on ajuste le num du mois car celui qu'on va recuperer partira de 0, et on veux aussi un format '01' et pas '1'
+    let formatNum = number;
+    formatNum = formatNum < 10 ? '0' + formatNum : formatNum;
+    return formatNum;
+}
 
 function restartElements() {
-    //on ajuste le num du mois car celui qu'on va recuperé partira de 0, et on veux aussi un format '01' et pas '1'
-    let monthFormatNum = monthNum + 1;
-    monthFormatNum = monthFormatNum < 10 ? '0' + monthFormatNum : monthFormatNum;
+    let monthFormatNum = formatMonth(monthNum);
 
-    //on change les valeurs affichée en html
+    //on change les valeurs affichée en html et on actualise la valeur du champ date:active
     titleMonth.textContent = monthFormatNum;
-    document.querySelector('#calendar-arrivee').value = '2021-' + monthFormatNum + "-01";
+    sendValueToActiveDateInput('2021-' + monthFormatNum + "-01");
 
     //on remet le style des elements a zéro et on les réactive
     let days = document.querySelectorAll('[id*=day-]');
@@ -76,6 +136,4 @@ function affectElements(interval) {
     }
 }
 
-//maintenant on veux que les champs arrivée et depart du formulaire de depart soit remplis par un clic sur une case.
-//on recupere le jour via l'id de la case, et le mois par le num de la section au moment du clic
-//on va mettre des inputs et les formater en dates ?
+

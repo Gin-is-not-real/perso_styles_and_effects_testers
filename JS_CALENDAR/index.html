@@ -46,12 +46,21 @@
             <input type="button" class="calendar-case" id="day-29" value="29">
             <input type="button" class="calendar-case" id="day-30" value="30">
         </div>
+    </div>
 
+    <div id="div-inputs">
+        <div>
+            <button id="btn-arrivee" class="active">selectionner date arrivée</button>
+            <input id="calendar-arrivee" type="date" disabled=true>
+        </div>
+        <div>
+            <button id="btn-depart">selectionner date depart</button>
+            <input id="calendar-depart" type="date" disabled=true>
+        </div>
     </div>
 
     <div>
-        <input id="calendar-arrivee" type="date" disabled=true>
-        <input id="calendar-depart" type="date" disabled=true>
+        <button id="btn-send">envoyer</button>
     </div>
 
 </body>
@@ -70,7 +79,6 @@
             justify-content: space-between;
         }
         #calendar {
-
             display: grid;
             grid-template-columns: repeat(7, var(--size));
             grid-template-rows: repeat(5, var(--size));
@@ -80,6 +88,22 @@
             height: var(--size);
             width: var(--size);
             text-align: center;
+        }
+
+        #div-inputs {
+            display: flex;
+        }
+        #div-inputs div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            border-radius: 10px;
+        }
+
+        .active {
+            background-color: green;
         }
     </style>
 </html>
