@@ -3,6 +3,11 @@ let calendar = document.querySelector('#calendar');
 let calendarArrivee = document.querySelector('#calendar-arrivee');
 let calendarDepart = document.querySelector('#calendar-depart');
 
+//on recupere le num du mois en cours
+let actualMonth = new Date().getMonth();
+// console.log(actualMonth);
+let monthNum = actualMonth;
+
 //
 let btnArrivee = document.querySelector('#btn-arrivee');
 let btnDepart = document.querySelector('#btn-depart');
@@ -20,18 +25,20 @@ btns.forEach(btn => {
                 b.classList.remove('active');
             }
         })
-        console.log(this.className);
-
-        btns.forEach(b => {
-            // b.classList.toggle('active');
-        })
+        // console.log(this.className);
     })
 })
 btnDepart.addEventListener('click', function() {
     calendarDepart.value = calendarArrivee.value;
-    console.log(calendarArrivee.value);
-    // calendarDepart.value;
+    // console.log(calendarArrivee.value);
 })
+
+//###avant l'envoi il va falloir verifier que le champs départ est superieur au champ arrivée. on ne peut pas partir avant d'étre arrivé
+let btnSend = document.querySelector('#btn-send');
+btnSend.addEventListener('click', function() {
+    alert("du " + calendarArrivee.value + " au " + calendarDepart.value);
+})
+
 
 //calendar cases and listener
 //on veux que les champs arrivée et depart du formulaire de depart soit remplis par un clic sur une case.
@@ -42,19 +49,31 @@ dayElement.forEach(elt => {
     elt.addEventListener('click', function() {
         let date = new Date(calendarArrivee.value);
         date.setDate(this.id.replace('day-', ''));
-        // console.log('date', date);
-        
-        let dateStr = date.getFullYear().toString(10) + '-' + formatMonth(date.getMonth()).toString(10) + '-' + formatDay(date.getDate()).toString(10);
-        console.log(dateStr)
+        date.setMonth(parseInt(titleMonth.textContent) -1);
+        console.log('date', date);
 
-        sendValueToActiveDateInput(dateStr);
+        sendValueToActiveDateInput(formatDateToStr(date));
     })
 })
 
+function formatDateToStr(date) {
+    let dateStr = date.getFullYear().toString(10) + '-' + formatMonth(date.getMonth()).toString(10) + '-' + formatDay(date.getDate()).toString(10);
+    console.log(dateStr)
+    return dateStr;
+}
+
 function sendValueToActiveDateInput(dateStr) {
     let active = btnArrivee.classList.contains('active') ? calendarArrivee : calendarDepart;
-    // console.log(active);
     active.value = dateStr;
+
+    let dateArrivee = new Date(calendarArrivee.value);
+    let dateDepart = new Date(calendarDepart.value);
+
+    if(active === calendarArrivee) {
+        if(dateArrivee.getMonth() > dateDepart.getMonth() || dateArrivee.getDate() > dateDepart.getDate() ) {
+            calendarDepart.value = calendarArrivee.value;
+        }
+    }
 }
 
 
@@ -64,10 +83,6 @@ let reservations = [
     {arr: new Date('2021-01-15'), dep: new Date('2021-01-18')},
 ];
 
-//on recupere le num du mois en cours
-let actualMonth = new Date().getMonth();
-// console.log(actualMonth);
-let monthNum = actualMonth;
 setMonthNum(actualMonth);
 //////////////////////////////////////////////////////
 //BUTTONS FUNCTIONS
