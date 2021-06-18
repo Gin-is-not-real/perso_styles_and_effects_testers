@@ -24,33 +24,48 @@ class GnrDatePicker {
         //les fleches pour changer de mois
         this.btnDown = document.querySelector(parentId + ' #gdp-arrow-down');
         this.btnDown.addEventListener('click', function() {
-            him.setMonth(him.getMonth() - 1);
-            him.updateDisplayers();
+            him.downMonth();
         });
         this.btnUp = document.querySelector(parentId + ' #gdp-arrow-up');
         this.btnUp.addEventListener('click', function() {
-            him.setMonth(him.getMonth() + 1);
-            him.updateDisplayers();
+            him.upMonth()
         });
 
-        //les cases jours
+        //les cases days
         this.dayKeys = document.querySelectorAll(parentId + ' .gdp-day');
         this.dayKeys.forEach(elt => {
             elt.addEventListener('click', function() {
-                console.log(elt.value);
-                him.setDate(this.value);
-                him.updateCurrentDay(elt);
+                // console.log(elt.value);
+                him.changeDay(this);
             })
         })
 
         this.updateDisplayers();
     }
 
+    changeDay(elt) {
+        this.setDate(elt.value);
+        this.updateCurrentDay(elt);
+    }
+    downMonth() {
+        this.setMonth(this.getMonth() - 1);
+        this.updateDisplayers();
+    }
+    upMonth() {
+        this.setMonth(this.getMonth() + 1);
+        this.updateDisplayers();
+    }
+    /*
+        called when we change of month 
+    */
     updateDisplayers() {
         this.displayer.textContent = formatMonth(this.getMonth()) + ' ' + this.getFullYear();
-
         this.updateVisibleDays();
     }
+
+    /*
+        add or remove class activ on day
+    */
     updateCurrentDay(elt) {
         let last = this.dayKeys.lastActive;
         if(last != undefined) {
@@ -59,8 +74,12 @@ class GnrDatePicker {
         this.dayKeys.lastActive = elt;
         elt.classList.add('gdp-activ-day');
     }
+
+    /*
+        display only the number of days of the current month
+    */
     updateVisibleDays() {
-        console.log(this.dayKeys[this.getDate() -1])
+        // console.log(this.dayKeys[this.getDate() -1])
         this.dayKeys[this.getDate() -1].classList.add('active');
 
         let nbrDays = getNbrDaysInMonth(this.date);
@@ -91,7 +110,6 @@ class GnrDatePicker {
         this.date.setDate(dayNum);
     }
     setMonth(monthNum) {
-        // if(monthNum)
         this.date.setMonth(monthNum);
 
     }
