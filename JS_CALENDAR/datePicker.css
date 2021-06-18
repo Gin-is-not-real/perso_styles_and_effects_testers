@@ -1,38 +1,75 @@
-html {
-    --size: 30px;
+#gdp-container {
+    width: 100%;
+    min-width: 300px;
+    max-width: 400px;
 }
-#date-picker {
-    width: max-content;
+#gdp-calendar {
+    width: 100%;
+    padding: 2%;
+    padding-bottom: 8%;
+
+    border-radius: var(--radius);
+    background-color: var(--bg-outer);
+    background-color: var(--bg-outer);
 }
-#date-picker>header {
+
+#gdp-calendar>header {
+    height: 50px;
+    padding: 2%;
+    margin: 2%;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    border-radius: var(--radius);
+    background-color: var(--bg-inner);
+    /* background-color: orange; */
 }
-#calendar {
+
+#gdp-days {
+    /* border: 0.5px solid rgb(112, 112, 112); */
+    display: flex;
+    justify-content: center;
+
+    border-radius: var(--radius);
+}
+#gdp-days div{
+    padding: 5%;
+
+    width: max-content;
     display: grid;
     grid-template-columns: repeat(7, var(--size));
     grid-template-rows: repeat(5, var(--size));
+    gap: 8px;
+
+    background-color: var(--bg-inner);
+    border: 0.5px solid rgb(112, 112, 112);
+    border-radius: var(--radius);
 }
-.calendar-case {
-    border: 1px solid black;
+.gdp-day {
     height: var(--size);
     width: var(--size);
     text-align: center;
+
+    border-radius: var(--radius-days);
+    border: none;
+}
+.gdp-day:hover, input[id^=gdp-arrow]:hover  {
+    background-color: var(--bg-hover);
+}
+.gdp-activ-day {
+    background-color: var(--bg-active);
 }
 
-#div-inputs {
-    display: flex;
-}
-#div-inputs div {
-    display: flex;
-    flex-direction: column;
-}
+input[id^=gdp-arrow] {
+    width: var(--size);
+    height: var(--size);
 
-button {
-    border-radius: 10px;
-}
+    align-self: center;
 
-.active {
-    background-color: green;
+    border-radius: var(--radius-arrow);
+    border: none;
+    /* background-color: var(--bg-active); */
+
 }

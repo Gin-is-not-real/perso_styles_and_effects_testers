@@ -1,0 +1,33 @@
+html {
+    --size: 30px;
+    --bg-active: orange;
+    --bg-hover: rgba(230, 178, 83, 0.974);
+
+    --radius: 10px;
+    --radius-arrow: 100%;
+    --radius-days: 100%;
+
+    --bg-outer: rgba(194, 177, 51, 0.549);
+    --bg-inner: rgba(81, 84, 83, 0.549);
+
+    --bg-outer: rgba(84, 81, 81, 0.549);
+    --bg-inner: rgba(84, 81, 81, 0.549);
+}
+
+/* html {
+    --size: 30px;
+
+    --radius: 10px;
+    --radius-arrow: 0;
+    --radius-days: 10px;
+
+    --bg-active: orange;
+    --bg-hover: rgba(230, 178, 83, 0.974);
+
+    --bg-outer: orange;
+    --bg-inner: rgba(84, 81, 81, 0.549);
+
+    --bg-outer: rgba(84, 81, 81, 0.549);
+    --bg-inner: rgba(84, 81, 81, 0.549);
+
+} */

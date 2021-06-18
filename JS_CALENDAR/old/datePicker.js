@@ -33,12 +33,11 @@ btnDepart.addEventListener('click', function() {
     // console.log(calendarArrivee.value);
 })
 
-//###avant l'envoi il va falloir verifier que le champs départ est superieur au champ arrivée. on ne peut pas partir avant d'étre arrivé
+
 let btnSend = document.querySelector('#btn-send');
 btnSend.addEventListener('click', function() {
     alert("du " + calendarArrivee.value + " au " + calendarDepart.value);
 })
-
 
 //calendar cases and listener
 //on veux que les champs arrivée et depart du formulaire de depart soit remplis par un clic sur une case.
@@ -50,7 +49,7 @@ dayElement.forEach(elt => {
         let date = new Date(calendarArrivee.value);
         date.setDate(this.id.replace('day-', ''));
         date.setMonth(parseInt(titleMonth.textContent) -1);
-        console.log('date', date);
+        // console.log('date', date);
 
         sendValueToActiveDateInput(formatDateToStr(date));
     })
@@ -58,7 +57,7 @@ dayElement.forEach(elt => {
 
 function formatDateToStr(date) {
     let dateStr = date.getFullYear().toString(10) + '-' + formatMonth(date.getMonth()).toString(10) + '-' + formatDay(date.getDate()).toString(10);
-    console.log(dateStr)
+    // console.log(dateStr)
     return dateStr;
 }
 
