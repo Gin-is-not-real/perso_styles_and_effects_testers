@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop</title>
+</head>
+<body>
+    <header>
+        <h1>Tests drag and drop</h1>
+    </header>
+    <div class="main-container">
+
+        <p id="draggable-1" draggable="true" ondragstart="dragstartHandler(event)">
+            Je suis un paragraphe draggable
+        </p>
+
+        <p id="dragtarget-1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
+            Je suis une cible
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        let pDrag1 = document.querySelector("#draggable-1");
+        let dragTarget1 = document.querySelector('#dragtarget-1');
+
+        function dragstartHandler(ev) {
+            //on ajoute l'id de l'element cible de l'objet de transfert
+            ev.dataTransfer.setData("text/plain", ev.target.innerText);
+
+            //on ajoute d'autres types de données transportées
+            ev.dataTransfer.setData("text/html", ev.target.outerHTML);
+            ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
+
+            //on crée une image qu'on utiliseras pour le deplacement
+            let img = new Image();
+            img.src = 'img/jellyfish.png';
+            ev.dataTransfer.setDragImage(img, 10, 10);
+
+            //copy, move, link
+            // ev.dataTransfer.dropEffect = "copy";
+        }
+
+        function dragoverHandler(ev) {
+            ev.preventDefault();
+            //move, copy or link
+            ev.dataTransfer.dropEffect = "move";
+        }
+
+        function dropHandler(ev) {
+            ev.preventDefault();
+            //on recupere l'id de la cible et on ajoute l"element déplacé au DOM de la cible
+            let data = ev.dataTransfer.getData("text/plain");
+            console.log(ev.dataTransfer.mozSourceNode);
+            ev.target.appendChild(data);
+        }
+
+    </script>
+
+    <style type="text/css">
+        div, p {
+            border: 1px solid black;
+        }
+        .main-container {
+            height: 50vh;
+        }
+    </style>
+</body>
+</html>
